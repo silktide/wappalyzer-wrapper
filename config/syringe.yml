@@ -1,0 +1,21 @@
+services:
+  client:
+    class: Silktide\WappalyzerWrapper\Client
+    arguments:
+      - "@command.factory"
+      - "@result.parser"
+
+  command.factory:
+    class: Silktide\WappalyzerWrapper\CommandFactory
+
+  result.parser:
+    class: Silktide\WappalyzerWrapper\Result\ResultProcessor
+    arguments:
+      - "@result.factory"
+      - "@result.technologyfactory"
+
+  result.technologyfactory:
+    class: Silktide\WappalyzerWrapper\Result\TechnologyResultFactory
+
+  result.factory:
+    class: Silktide\WappalyzerWrapper\Result\ResultFactory

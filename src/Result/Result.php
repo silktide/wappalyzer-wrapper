@@ -38,5 +38,21 @@ class Result
         $this->technologyResults[] = $technologyResult;
     }
 
+    /**
+     * @param string $category
+     * @return TechnologyResult[]
+     */
+    public function getTechnologyResultsByCategory(string $category)
+    {
+        $return = [];
+
+        foreach ($this->technologyResults as $result) {
+            if (in_array($category, $result->getCategories())) {
+                $return[] = $result;
+            }
+        }
+
+        return $return;
+    }
 
 }

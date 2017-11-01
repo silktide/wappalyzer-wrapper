@@ -22,6 +22,27 @@ class ResultTest extends TestCase
         $this->assertEquals(2, count($results));
         $this->assertContains($mockTechnologyResult1, $results);
         $this->assertContains($mockTechnologyResult2, $results);
+    }
 
+    public function testGetByCategory()
+    {
+        $mockTechnologyResult1 = $this->getMockBuilder(TechnologyResult::class)->getMock();
+        $mockTechnologyResult2 = $this->getMockBuilder(TechnologyResult::class)->getMock();
+        $mockTechnologyResult3 = $this->getMockBuilder(TechnologyResult::class)->getMock();
+
+        $mockTechnologyResult1->expects($this->any())->method('getCategories')->willReturn(["Analytics", "Ecommerce"]);
+        $mockTechnologyResult2->expects($this->any())->method('getCategories')->willReturn(["Ecommerce"]);
+        $mockTechnologyResult3->expects($this->any())->method('getCategories')->willReturn(["Analytics"]);
+
+        $result = new Result();
+        $result->addTechnologyResult($mockTechnologyResult1);
+        $result->addTechnologyResult($mockTechnologyResult2);
+        $result->addTechnologyResult($mockTechnologyResult3);
+
+        $results = $result->getTechnologyResultsByCategory('Analytics');
+
+        $this->assertContains($mockTechnologyResult1, $results);
+        $this->assertContains($mockTechnologyResult3, $results);
+        $this->assertNotContains($mockTechnologyResult2, $results);
     }
 }

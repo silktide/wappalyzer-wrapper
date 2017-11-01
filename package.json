@@ -1,7 +1,7 @@
 {
   "name": "wappalyzer-wrapper",
   "version": "1.0.0",
-  "description": "",
+  "description": "PHP wrapper for Wappalyzer technology detection library.",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -9,10 +9,11 @@
   "dependencies": {
     "wappalyzer": "^5.1.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Silktide Ltd",
+  "license": "GPL-3.0"
 }

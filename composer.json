@@ -1,13 +1,15 @@
 {
     "name": "silktide/wappalyzer-wrapper",
     "description": "Wrapper for wappalyzer technology detection.",
-    "type": "library",
+    "type": "composer-plugin",
     "require": {
         "php": "^7",
-        "mikehaertl/php-shellcommand": "^1.2"
+        "mikehaertl/php-shellcommand": "^1.2",
+        "composer-plugin-api": "^1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.4"
+        "phpunit/phpunit": "^6.4",
+        "composer/composer": "^1.3"
     },
     "authors": [
         {
@@ -15,10 +17,17 @@
             "email": "andrewwaite@silktide.com"
         }
     ],
+    "post-package-install": [
+        "npm install"
+    ],
     "autoload": {
         "psr-4": {
+            "Silktide\\WappalyzerInstall\\": "install",
             "Silktide\\WappalyzerWrapper\\": "src",
             "Silktide\\WappalyzerWrapper\\Test\\": "test"
         }
+    },
+    "extra": {
+        "class": "Silktide\\WappalyzerInstall\\Installer"
     }
 }

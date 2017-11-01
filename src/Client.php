@@ -36,7 +36,10 @@ class Client
      */
     public function analyse(string $url)
     {
-        $command = $this->commandFactory->create('node node_modules/wappalyzer/index.js '.$url);
+
+        $path = realpath(__DIR__.'/../node_modules/wappalyzer/index.js');
+
+        $command = $this->commandFactory->create('nodejs '.$path.' '.$url);
 
         if (!$command->execute()) {
             throw new \Exception("Failed to execute");

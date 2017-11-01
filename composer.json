@@ -1,0 +1,24 @@
+{
+    "name": "silktide/wappalyzer-wrapper",
+    "description": "Wrapper for wappalyzer technology detection.",
+    "type": "library",
+    "require": {
+        "php": "^7",
+        "mikehaertl/php-shellcommand": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.4"
+    },
+    "authors": [
+        {
+            "name": "theandywaite",
+            "email": "andrewwaite@silktide.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Silktide\\WappalyzerWrapper\\": "src",
+            "Silktide\\WappalyzerWrapper\\Test\\": "test"
+        }
+    }
+}

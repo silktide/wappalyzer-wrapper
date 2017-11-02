@@ -13,12 +13,12 @@ class ResultProcessorTest extends TestCase
 {
     public function testResultProcessor()
     {
-        $exampleResponse = '[{"name":"FancyBox","confidence":"100","version":"2.1.5","icon":"FancyBox.png","website":"http://fancyapps.com/fancybox","categories":[{"12":"JavaScript Frameworks"}]},{"name":"Google Analytics","confidence":"100","version":"UA","icon":"Google Analytics.svg","website":"http://google.com/analytics","categories":[{"10":"Analytics"}]}]';
+        $exampleResponse = '[{"name":"FancyBox","confidence":"100","version":"2.1.5","website":"http://fancyapps.com/fancybox","categories":[{"12":"JavaScript Frameworks"}]},{"name":"Google Analytics","confidence":"100","version":"UA","icon":"Google Analytics.svg","website":"http://google.com/analytics","categories":[{"10":"Analytics"}]}]';
         $responseJunk = "JQMIGRATE: Migrate is installed, version 1.4.1\n";
         $mockTechnologyResult1 = $this->getMockBuilder(TechnologyResult::class)->getMock();
         $mockTechnologyResult1->expects($this->atLeastOnce())->method('setName')->with('FancyBox');
         $mockTechnologyResult1->expects($this->atLeastOnce())->method('setVersion')->with('2.1.5');
-        $mockTechnologyResult1->expects($this->atLeastOnce())->method('setIcon')->with('FancyBox.png');
+        $mockTechnologyResult1->expects($this->never())->method('setIcon');
         $mockTechnologyResult1->expects($this->atLeastOnce())->method('setWebsite')->with('http://fancyapps.com/fancybox');
         $mockTechnologyResult1->expects($this->atLeastOnce())->method('setConfidence')->with('100');
         $mockTechnologyResult1->expects($this->atLeastOnce())->method('addCategory')->with("JavaScript Frameworks");

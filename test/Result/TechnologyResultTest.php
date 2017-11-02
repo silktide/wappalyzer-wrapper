@@ -20,10 +20,15 @@ class TechnologyResultTest extends TestCase
         $result->setName($name);
         $result->setVersion($version);
         $result->setConfidence($confidence);
+
+        $this->assertFalse($result->hasIcon());
+        $this->assertNull($result->getIcon());
+
         $result->setIcon($icon);
         $result->setWebsite($website);
         $result->setCategories($categories);
 
+        $this->assertTrue($result->hasIcon());
         $this->assertEquals($name, $result->getName());
         $this->assertEquals($version, $result->getVersion());
         $this->assertEquals($confidence, $result->getConfidence());

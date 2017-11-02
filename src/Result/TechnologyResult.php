@@ -126,9 +126,17 @@ class TechnologyResult
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function getIcon(): string
+    public function hasIcon()
+    {
+        return !empty($this->icon);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getIcon(): ?string
     {
         return $this->icon;
     }

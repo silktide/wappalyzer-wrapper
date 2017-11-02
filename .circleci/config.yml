@@ -24,6 +24,7 @@ jobs:
             sudo mv ./composer.phar /usr/local/bin/composer
             sudo chmod +x /usr/local/bin/composer
             cd ${LAST_PWD}
+
       - checkout
 
       - restore_cache:

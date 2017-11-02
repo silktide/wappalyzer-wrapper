@@ -28,6 +28,11 @@
         }
     },
     "extra": {
-        "class": "Silktide\\WappalyzerInstall\\Installer"
+        "class": "Silktide\\WappalyzerInstall\\Installer",
+        "downsider-puzzle-di": {
+            "silktide/syringe": {
+                "path": "config/syringe.yml"
+            }
+        }
     }
 }

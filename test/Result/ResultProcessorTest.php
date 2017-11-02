@@ -18,6 +18,7 @@ class ResultProcessorTest extends TestCase
         $mockTechnologyResult1 = $this->getMockBuilder(TechnologyResult::class)->getMock();
         $mockTechnologyResult1->expects($this->atLeastOnce())->method('setName')->with('FancyBox');
         $mockTechnologyResult1->expects($this->atLeastOnce())->method('setVersion')->with('2.1.5');
+        $mockTechnologyResult1->expects($this->atLeastOnce())->method('setIcon')->with('FancyBox.png');
         $mockTechnologyResult1->expects($this->atLeastOnce())->method('setWebsite')->with('http://fancyapps.com/fancybox');
         $mockTechnologyResult1->expects($this->atLeastOnce())->method('setConfidence')->with('100');
         $mockTechnologyResult1->expects($this->atLeastOnce())->method('addCategory')->with("JavaScript Frameworks");
@@ -25,6 +26,7 @@ class ResultProcessorTest extends TestCase
         $mockTechnologyResult2 = $this->getMockBuilder(TechnologyResult::class)->getMock();
         $mockTechnologyResult2->expects($this->atLeastOnce())->method('setName')->with('Google Analytics');
         $mockTechnologyResult2->expects($this->atLeastOnce())->method('setVersion')->with('UA');
+        $mockTechnologyResult2->expects($this->atLeastOnce())->method('setIcon')->with('Google Analytics.svg');
         $mockTechnologyResult2->expects($this->atLeastOnce())->method('setWebsite')->with('http://google.com/analytics');
         $mockTechnologyResult2->expects($this->atLeastOnce())->method('setConfidence')->with('100');
         $mockTechnologyResult2->expects($this->atLeastOnce())->method('addCategory')->with("Analytics");

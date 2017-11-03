@@ -25,6 +25,11 @@ class TechnologyResult
     protected $website;
 
     /**
+     * @var string
+     */
+    protected $icon;
+
+    /**
      * @var string[]
      */
     protected $categories = [];
@@ -119,4 +124,30 @@ class TechnologyResult
     {
         $this->categories[] = $category;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasIcon()
+    {
+        return !empty($this->icon);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    /**
+     * @param string $icon
+     */
+    public function setIcon(string $icon)
+    {
+        $this->icon = $icon;
+    }
+
+
 }

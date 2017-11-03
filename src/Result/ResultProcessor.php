@@ -64,6 +64,9 @@ class ResultProcessor
             $technologyResult->setConfidence($technologyItem['confidence']);
             $technologyResult->setWebsite($technologyItem['website']);
             $technologyResult->setVersion($technologyItem['version']);
+            if (isset($technologyItem['icon'])) {
+                $technologyResult->setIcon($technologyItem['icon']);
+            }
             foreach ($technologyItem['categories'] as $category) {
                 $actualCategory = array_values($category);
                 $technologyResult->addCategory($actualCategory[0]);

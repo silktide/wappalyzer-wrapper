@@ -27,14 +27,14 @@ class ExistingPageDataRequestTest extends TestCase
 
         $request = new ExistingPageDataRequest();
         $request->setUrl($exampleUrl);
-        $request->setEnv($exampleEnv);
+        $request->setWindowObjectKeys($exampleEnv);
         $request->setHeaders($exampleHeaders);
         $request->setHostname($exampleHostname);
         $request->setHtml($exampleMarkup);
 
         $this->assertEquals($exampleUrl, $request->getUrl());
         $this->assertEquals($exampleHostname, $request->getHostname());
-        $this->assertEquals($exampleEnv, $request->getEnv());
+        $this->assertEquals($exampleEnv, $request->getWindowObjectKeys());
         $this->assertEquals($exampleHeaders, $request->getHeaders());
         $this->assertEquals($exampleMarkup, $request->getHtml());
 
@@ -47,7 +47,7 @@ class ExistingPageDataRequestTest extends TestCase
 
         $this->assertEquals($asArray['url'], $request->getUrl());
         $this->assertEquals($asArray['hostname'], $request->getHostname());
-        $this->assertEquals($asArray['env'], $request->getEnv());
+        $this->assertEquals($asArray['env'], $request->getWindowObjectKeys());
         $this->assertEquals($asArray['headers'], $request->getHeaders());
         $this->assertEquals($asArray['html'], $request->getHtml());
 

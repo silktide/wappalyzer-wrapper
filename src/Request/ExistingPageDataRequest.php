@@ -12,22 +12,24 @@ class ExistingPageDataRequest
     /**
      * @var string
      */
-    protected $url;
+    protected $url = '';
 
     /**
      * @var string
      */
-    protected $hostname;
+    protected $hostname = '';
 
     /**
+     * Wappalyzer requires a list of keys from the window object of the browser
+     *
      * @var string[]
      */
-    protected $env = [];
+    protected $windowObjectKeys = [];
 
     /**
      * @var string
      */
-    protected $html;
+    protected $html = '';
 
     /**
      * @return \string[]
@@ -92,28 +94,32 @@ class ExistingPageDataRequest
     /**
      * @return \string[]
      */
-    public function getEnv(): array
+    public function getWindowObjectKeys(): array
     {
-        return $this->env;
+        return $this->windowObjectKeys;
     }
 
     /**
-     * @param \string[] $env
+     * Wappalyzer requires a list of keys from the window object of the browser
+     *
+     * @param array $windowObjectKeys
      */
-    public function setEnv(array $env)
+    public function setWindowObjectKeys(array $windowObjectKeys)
     {
-        $this->env = [];
-        foreach ($env as $value) {
-            $this->addEnv($value);
+        $this->windowObjectKeys = [];
+        foreach ($windowObjectKeys as $windowObjectKey) {
+            $this->addWindowObjectKey($windowObjectKey);
         }
     }
 
     /**
-     * @param string $value
+     * Wappalyzer requires a list of keys from the window object of the browser
+     *
+     * @param string $windowObjectKey
      */
-    public function addEnv(string $value)
+    public function addWindowObjectKey(string $windowObjectKey)
     {
-        $this->env[] = $value;
+        $this->windowObjectKeys[] = $windowObjectKey;
     }
 
     /**
@@ -139,7 +145,7 @@ class ExistingPageDataRequest
     public function toArray()
     {
         return [
-            'env' => $this->env,
+            'env' => $this->windowObjectKeys,
             'headers' => $this->headers,
             'url' => $this->url,
             'hostname' => $this->hostname,

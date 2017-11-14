@@ -29,7 +29,7 @@ foreach ($result->getTechnologyResultsByCategory('Analytics') as $technologyResu
 ```
     
 ## Usage with existing data
-This client can also be used with existing page data you already have.  You will need the hostname, URL, response headers, HTML and env vars.  Wappalyzer env vars should be a list of keys from the window object of the page visited, e.g. jQuery, ga.
+This client can also be used with existing page data you already have, bypassing wappalyzer's use of Zombie to download the page.  You will need the hostname, URL, response headers, HTML and env vars.  Wappalyzer env vars should be a list of keys from the window object of the page visited, e.g. `['jQuery', 'ga']`.
 
 ```php
 

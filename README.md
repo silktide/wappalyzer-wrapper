@@ -48,7 +48,7 @@ $existingPageDataRequest = new \Silktide\WappalyzerWrapper\Request\ExistingPageD
 $existingPageDataRequest->setHostname('example.com');
 $existingPageDataRequest->setUrl('https://example.com');
 $existingPageDataRequest->addHeader('Content-Type', 'application/json');
-$existingPageDataRequest->addEnv('ga');
+$existingPageDataRequest->addWindowObjectKey('ga');
 $existingPageDataRequest->setHtml('<html><head><meta name="generator" content="Amiro"></head><body></body></html>');
 
 // Create client

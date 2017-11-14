@@ -1,5 +1,7 @@
 # wappalyzer-wrapper
-A simple PHP wrapper for Wappalyzer technology detection
+A simple PHP wrapper for Wappalyzer technology detection.
+
+Wraps up wappalyzer-cli command line client for use in PHP.  This library now also allows you to optionally bypass Wappalyzer's use of zombie to download the page, and instead you can pass in your own HTML, headers etc.
 
 ## Simple usage
 
@@ -28,7 +30,7 @@ foreach ($result->getTechnologyResultsByCategory('Analytics') as $technologyResu
 }
 ```
     
-## Usage with existing data
+## Usage with existing page data
 This client can also be used with existing page data you already have, bypassing wappalyzer's use of Zombie to download the page.  You will need the hostname, URL, response headers, HTML and env vars.  Wappalyzer env vars should be a list of keys from the window object of the page visited, e.g. `['jQuery', 'ga']`.
 
 ```php

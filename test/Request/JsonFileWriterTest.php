@@ -30,5 +30,9 @@ class JsonFileWriterTest extends TestCase
 
         $this->assertEquals($exampleData, $json);
 
+        $writer->remove($filename);
+
+        $this->assertFileNotExists($filename);
+
     }
 }

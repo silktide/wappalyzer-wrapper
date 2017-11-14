@@ -74,8 +74,18 @@ class Client
      */
     public function analyseFromExistingData(ExistingPageDataRequest $request)
     {
+        // Get path of our script
         $path = realpath(__DIR__.'/../src/wappalyze.js');
+
+        // Write json to temp file
         $filename = $this->jsonFileWriter->writeToTempFile($request);
-        return $this->executeCommandAndReturnResult('nodejs '.$path.' '.$filename);
+
+        // Execute
+        $result = $this->executeCommandAndReturnResult('nodejs '.$path.' '.$filename);
+
+        // Clean up temp json file
+        $this->jsonFileWriter->remove($filename);
+
+        return $result;
     }
 }

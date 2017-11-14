@@ -35,4 +35,12 @@ class JsonFileWriter
 
         return $tmpFilename;
     }
+
+    /**
+     * @param string $filename
+     */
+    public function remove(string $filename)
+    {
+        unlink($filename);
+    }
 }

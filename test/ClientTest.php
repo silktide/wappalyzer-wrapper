@@ -49,6 +49,7 @@ class ClientTest extends TestCase
 
         $mockJsonFileWriter = $this->getMockBuilder(JsonFileWriter::class)->getMock();
         $mockJsonFileWriter->expects($this->any())->method('writeToTempFile')->with($examplePageDataRequest)->willReturn($tmpPath);
+        $mockJsonFileWriter->expects($this->atLeastOnce())->method('remove')->with($tmpPath);
 
         $json = '[{"json":"something"}]';
 

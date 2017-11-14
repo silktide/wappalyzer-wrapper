@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * This file allows the use of Wappalyzer without the inbuilt Zombie spider.
+ *
+ * It reads page data from a simple JSON file and outputs the found technologies as JSON.
+ */
+
 const Wappalyzer = require('../node_modules/wappalyzer/wappalyzer');
 const fs = require('fs');
 

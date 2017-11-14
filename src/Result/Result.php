@@ -8,7 +8,7 @@ class Result
     /**
      * @var TechnologyResult[]
      */
-    protected $technologyResults;
+    protected $technologyResults = [];
 
     /**
      * @return TechnologyResult[]

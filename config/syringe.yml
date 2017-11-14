@@ -4,6 +4,7 @@ services:
     arguments:
       - "@command.factory"
       - "@result.parser"
+      - "@json.filewriter"
 
   command.factory:
     class: Silktide\WappalyzerWrapper\CommandFactory
@@ -19,3 +20,6 @@ services:
 
   result.factory:
     class: Silktide\WappalyzerWrapper\Result\ResultFactory
+
+  json.filewriter:
+    class: Silktide\WappalyzerWrapper\Request\JsonFileWriter

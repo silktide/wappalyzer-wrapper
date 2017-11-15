@@ -71,7 +71,6 @@ for (let headerName in document.headers) {
     headers[headerName] = [headerValue];
 }
 
-console.log(headers);
 
 wappalyzer.analyze(
     document.hostname,

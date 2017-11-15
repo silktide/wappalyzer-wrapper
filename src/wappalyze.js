@@ -8,6 +8,7 @@
 
 const Wappalyzer = require('../node_modules/wappalyzer/wappalyzer');
 const fs = require('fs');
+const path = require('path');
 
 const wappalyzer = new Wappalyzer();
 
@@ -22,7 +23,7 @@ if ( !inputFile ) {
 }
 
 const document = JSON.parse(fs.readFileSync(inputFile));
-const json = JSON.parse(fs.readFileSync('node_modules/wappalyzer/apps.json'));
+const json = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../node_modules/wappalyzer/apps.json')));
 
 wappalyzer.apps = json.apps;
 wappalyzer.categories = json.categories;

@@ -75,7 +75,7 @@ class Client
     public function analyseFromExistingData(ExistingPageDataRequest $request)
     {
         // Get path of our script
-        $path = realpath(__DIR__.'/../src/wappalyze.js');
+        $path = realpath(__DIR__.'/../src/driver.js');
 
         // Write json to temp file
         $filename = $this->jsonFileWriter->writeToTempFile($request);

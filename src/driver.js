@@ -63,7 +63,7 @@ wappalyzer.driver.displayApps = detected => {
 };
 
 
-// Bastardise the headers since Wappalyzer changed it to support multiple headers with the same keywappalzyer.js
+// Bastardise the headers since Wappalyzer changed it to support multiple headers with the same key
 const headers = {};
 
 for (let headerName in document.headers) {

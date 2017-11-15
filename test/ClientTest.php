@@ -58,7 +58,7 @@ class ClientTest extends TestCase
         $mockCommand->expects($this->atLeastOnce())->method('getOutput')->willReturn($json);
 
         // Should use path relative to this test
-        $path = realpath(__DIR__.'/../src/wappalyze.js');
+        $path = realpath(__DIR__.'/../src/driver.js');
 
         $mockCommandFactory = $this->getMockBuilder(CommandFactory::class)->getMock();
         $mockCommandFactory->expects($this->atLeastOnce())->method('create')->with('nodejs '.$path.' '.$tmpPath)->will($this->returnValue($mockCommand));

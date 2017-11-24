@@ -68,7 +68,7 @@ const headers = {};
 
 for (let headerName in document.headers) {
     let headerValue = document.headers[headerName];
-    headers[headerName] = [headerValue];
+    headers[headerName.toLowerCase()] = [headerValue];
 }
 
 

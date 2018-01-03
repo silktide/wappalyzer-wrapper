@@ -48,7 +48,7 @@ class Client
         $command = $this->commandFactory->create($command);
 
         if (!$command->execute()) {
-            throw new \Exception("Failed to execute");
+            throw new \Exception("Failed to execute. [".$command->getStdErr(true)."]");
         }
 
         $jsonOutput = $command->getOutput();

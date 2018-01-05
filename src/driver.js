@@ -58,7 +58,7 @@ wappalyzer.driver.displayApps = detected => {
         });
     });
 
-    process.stdout.write(JSON.stringify(apps) + '\n');
+    process.stdout.write(JSON.stringify({'applications': apps}) + '\n');
     process.exit();
 };
 

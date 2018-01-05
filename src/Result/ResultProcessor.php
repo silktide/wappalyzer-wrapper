@@ -58,7 +58,7 @@ class ResultProcessor
 
         $result = $this->resultFactory->create();
 
-        foreach ($decodedJson as $technologyItem) {
+        foreach ($decodedJson['applications'] as $technologyItem) {
             $technologyResult = $this->technologyResultFactory->create();
             $technologyResult->setName($technologyItem['name']);
             $technologyResult->setConfidence($technologyItem['confidence']);

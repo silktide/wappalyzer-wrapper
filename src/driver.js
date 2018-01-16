@@ -71,8 +71,12 @@ for (let headerName in document.headers) {
     headers[headerName.toLowerCase()] = [headerValue];
 }
 
+console.log(document.url);
+
 wappalyzer.analyze(
-    document.url, {
+    document.url,
+    document.url,
+    {
         headers,
         html: document.html,
         env: document.env

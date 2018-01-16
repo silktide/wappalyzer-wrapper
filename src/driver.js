@@ -72,7 +72,9 @@ for (let headerName in document.headers) {
 }
 
 wappalyzer.analyze(
-    document.url, {
+    document.url,
+    document.url,
+    {
         headers,
         html: document.html,
         env: document.env

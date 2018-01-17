@@ -94,9 +94,13 @@ let getJs = function(env) {
             patterns[appName][chain].forEach((pattern, index) => {
                 const properties = chain.split('.');
 
-                let value = properties.reduce((parent, property) => {
-                    return parent && parent.includes(property) ? true : null;
-                }, env);
+                let value = false;
+                properties.forEach((property) => {
+                    if (env && env.includes(property)) {
+                        value = true;
+                        return;
+                    }
+                });
 
                 if ( value ) {
                     js[appName][chain][index] = value;

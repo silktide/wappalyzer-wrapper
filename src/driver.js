@@ -27,6 +27,7 @@ const json = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../node_modules
 
 wappalyzer.apps = json.apps;
 wappalyzer.categories = json.categories;
+wappalyzer.parseJsPatterns();
 
 wappalyzer.driver.log = (message, source, type) => {
 };
@@ -71,12 +72,47 @@ for (let headerName in document.headers) {
     headers[headerName.toLowerCase()] = [headerValue];
 }
 
+/**
+ * This changes the environment into the way Wappalyzer is expecting
+ * since their update.
+ *
+ * @todo support object values
+ *
+ * @param env
+ * @returns {{}}
+ */
+let getJs = function(env) {
+    const patterns = wappalyzer.jsPatterns;
+    const js = {};
+
+    Object.keys(patterns).forEach(appName => {
+        js[appName] = {};
+
+        Object.keys(patterns[appName]).forEach(chain => {
+            js[appName][chain] = {};
+
+            patterns[appName][chain].forEach((pattern, index) => {
+                const properties = chain.split('.');
+
+                let value = properties.reduce((parent, property) => {
+                    return parent && parent.includes(property) ? true : null;
+                }, env);
+
+                if ( value ) {
+                    js[appName][chain][index] = value;
+                }
+            });
+        });
+    });
+
+    return js;
+};
+
 wappalyzer.analyze(
-    document.url,
     document.url,
     {
         headers,
         html: document.html,
-        env: document.env
+        js: getJs(document.env)
     }
 );

@@ -26,24 +26,31 @@ class Installer implements PluginInterface, EventSubscriberInterface
 
     public static function install(Event $event)
     {
+        $output = $event->getIo();
 
+        $output->write("<info>Installing Wappalyzer-Wrapper dependencies</info>");
+        file_put_contents("/tmp/foo.txt", "This was run");
         $composer = $event->getComposer();
         $myDirectory = $composer->getInstallationManager()->getInstallPath(
             $composer->getRepositoryManager()->findPackage("silktide/wappalyzer-wrapper", "*")
         );
 
         chdir($myDirectory);
-
         exec('npm -v', $foo, $exitCode);
+        $output->write("<info>npm version: {$foo[0]}</info>");
 
         if ($exitCode !== 0) {
-            throw new \exception("NPM not installed");
+            throw new \Exception("NPM not installed");
         }
 
-        exec('npm install', $foo, $exitCode);
-
+        $output->write("<info>Installing Wappalyser</info>");
+        exec('npm install', $stdOut, $exitCode);
         if ($exitCode !== 0) {
-            throw new \exception("NPM install failed");
+            throw new \Exception("NPM install failed");
         }
+        $output->write("<info>NPM Version: ".$stdOut[0]."</info>");
+
+        $version = json_decode(file_get_contents($myDirectory . "/node_modules/wappalyzer/package.json"), true);
+        $output->write("<info>Wappalyzer Version: ".$version["_spec"]."</info>");
     }
 }

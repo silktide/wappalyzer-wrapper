@@ -37,13 +37,13 @@ class Installer implements PluginInterface, EventSubscriberInterface
         exec('npm -v', $foo, $exitCode);
 
         if ($exitCode !== 0) {
-            throw new \exception("NPM not installed");
+            throw new \Exception("NPM not installed");
         }
 
         exec('npm install', $foo, $exitCode);
 
         if ($exitCode !== 0) {
-            throw new \exception("NPM install failed");
+            throw new \Exception("NPM install failed");
         }
     }
 }

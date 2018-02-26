@@ -27,9 +27,6 @@ class Installer implements PluginInterface, EventSubscriberInterface
     public static function install(Event $event)
     {
         $output = $event->getIo();
-
-        $output->write("<info>Installing Wappalyzer-Wrapper dependencies</info>");
-        file_put_contents("/tmp/foo.txt", "This was run");
         $composer = $event->getComposer();
         $myDirectory = $composer->getInstallationManager()->getInstallPath(
             $composer->getRepositoryManager()->findPackage("silktide/wappalyzer-wrapper", "*")

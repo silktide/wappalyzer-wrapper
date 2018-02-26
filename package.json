@@ -9,8 +9,7 @@
   "dependencies": {
     "wappalyzer": "5.4.*"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

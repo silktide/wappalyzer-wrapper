@@ -32,6 +32,20 @@ class ExistingPageDataRequest
     protected $html = '';
 
     /**
+     * List of JS scripts referenced
+     *
+     * @var string[]
+     */
+    protected $scripts = [];
+
+    /**
+     * List of cookies
+     *
+     * @var Cookie[]
+     */
+    protected $cookies = [];
+
+    /**
      * @return \string[]
      */
     public function getHeaders(): array
@@ -138,18 +152,77 @@ class ExistingPageDataRequest
         $this->html = $html;
     }
 
+    /**
+     * @return string[]
+     */
+    public function getScripts(): array
+    {
+        return $this->scripts;
+    }
+
+    /**
+     * @param string[] $scripts
+     */
+    public function setScripts(array $scripts)
+    {
+        $this->scripts = [];
+        foreach ($scripts as $script) {
+            $this->addScript($script);
+        }
+    }
+
+    /**
+     * @param string $script
+     */
+    public function addScript(string $script)
+    {
+        $this->scripts[] = $script;
+    }
+
+    /**
+     * @return Cookie[]
+     */
+    public function getCookies(): array
+    {
+        return $this->cookies;
+    }
+
+    /**
+     * @param Cookie[] $cookies
+     */
+    public function setCookies(array $cookies)
+    {
+        $this->cookies = [];
+        foreach ($cookies as $cookie) {
+            $this->addCookie($cookie);
+        }
+    }
+
+    public function addCookie(Cookie $cookie)
+    {
+        $this->cookies[] = $cookie;
+    }
+
 
     /**
      * @return array
      */
     public function toArray()
     {
+        $serialisedCookies = [];
+
+        foreach ($this->cookies as $cookie) {
+            $serialisedCookies[] = $cookie->toArray();
+        }
+
         return [
             'env' => $this->windowObjectKeys,
             'headers' => $this->headers,
             'url' => $this->url,
             'hostname' => $this->hostname,
-            'html' => $this->html
+            'html' => $this->html,
+            'scripts' => $this->scripts,
+            'cookies' => $serialisedCookies
         ];
     }
 

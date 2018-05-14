@@ -117,6 +117,8 @@ wappalyzer.analyze(
     {
         headers,
         html: document.html,
-        js: getJs(document.env)
+        js: getJs(document.env),
+        scripts: document.scripts,
+        cookies: document.cookies
     }
 );

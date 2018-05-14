@@ -28,26 +28,26 @@ class Installer implements PluginInterface, EventSubscriberInterface
     {
         $output = $event->getIo();
         $composer = $event->getComposer();
-        $myDirectory = $composer->getInstallationManager()->getInstallPath(
+        $wappalyzerWrapperDirectory = $composer->getInstallationManager()->getInstallPath(
             $composer->getRepositoryManager()->findPackage("silktide/wappalyzer-wrapper", "*")
         );
 
-        chdir($myDirectory);
-        exec('npm -v', $foo, $exitCode);
-        $output->write("<info>npm version: {$foo[0]}</info>");
+        exec('npm -v', $npmVersion, $exitCode);
+        $output->write("<info>npm version: {$npmVersion[0]}</info>");
 
         if ($exitCode !== 0) {
-            throw new \Exception("NPM not installed");
+            throw new \Exception("<error>NPM not installed</error>");
         }
 
         $output->write("<info>Installing Wappalyser</info>");
-        exec('npm install', $stdOut, $exitCode);
-        if ($exitCode !== 0) {
-            throw new \Exception("NPM install failed");
-        }
-        $output->write("<info>NPM Version: ".$stdOut[0]."</info>");
+        exec("cd {$wappalyzerWrapperDirectory} && npm install", $stdOut, $exitCode);
 
-        $version = json_decode(file_get_contents($myDirectory . "/node_modules/wappalyzer/package.json"), true);
+        if ($exitCode !== 0) {
+            throw new \Exception("<error>NPM install failed</error>");
+        }
+
+        $packageJsonFilename = $wappalyzerWrapperDirectory . "/node_modules/wappalyzer/package.json";
+        $version = json_decode(file_get_contents($packageJsonFilename), true);
         $output->write("<info>Wappalyzer Version: ".$version["_spec"]."</info>");
     }
 }

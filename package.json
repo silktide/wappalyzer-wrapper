@@ -1,6 +1,10 @@
 {
   "name": "wappalyzer-wrapper",
   "version": "1.0.0",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/silktide/wappalyzer-wrapper.git"
+  }
   "description": "PHP wrapper for Wappalyzer technology detection library.",
   "main": "index.js",
   "directories": {

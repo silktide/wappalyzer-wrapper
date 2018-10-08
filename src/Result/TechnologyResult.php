@@ -67,9 +67,9 @@ class TechnologyResult
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getVersion(): string
+    public function getVersion(): ?string
     {
         return $this->version;
     }

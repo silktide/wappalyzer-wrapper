@@ -62,11 +62,19 @@ class ResultProcessor
             $technologyResult = $this->technologyResultFactory->create();
             $technologyResult->setName($technologyItem['name']);
             $technologyResult->setConfidence($technologyItem['confidence']);
-            $technologyResult->setWebsite($technologyItem['website']);
-            $technologyResult->setVersion($technologyItem['version']);
-            if (isset($technologyItem['icon'])) {
+
+            if (!empty($technologyItem['website'])) {
+                $technologyResult->setWebsite($technologyItem['website']);
+            }
+
+            if (!empty($technologyItem['version'])) {
+                $technologyResult->setVersion($technologyItem['version']);
+            }
+
+            if (!empty($technologyItem['icon'])) {
                 $technologyResult->setIcon($technologyItem['icon']);
             }
+
             foreach ($technologyItem['categories'] as $category) {
                 $actualCategory = array_values($category);
                 $technologyResult->addCategory($actualCategory[0]);

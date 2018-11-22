@@ -8,22 +8,16 @@ workflows:
 jobs:
   test:
     docker:
-      - image: circleci/php:7.1-fpm-jessie-browsers
+      - image: circleci/php:7.2-fpm
 
     working_directory: ~/repo
     steps:
       - run:
           name: "Install composer"
           command: |
-            LAST_PWD=${PWD}
-            cd /tmp/
-            php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-            php -r "if (hash_file('SHA384', 'composer-setup.php') === '93b54496392c062774670ac18b134c3b3a95e5a5e5c8f1a9f115f203b75bf9a129d5daa8ba6a13e2cc8a1da0806388a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-            php composer-setup.php
-            php -r "unlink('composer-setup.php');"
+            wget https://raw.githubusercontent.com/composer/getcomposer.org/35ca72b506eba32c0baed4d283a5f834968e5ade/web/installer -O - -q | php -- --quiet
             sudo mv ./composer.phar /usr/local/bin/composer
             sudo chmod +x /usr/local/bin/composer
-            cd ${LAST_PWD}
 
       - checkout
 

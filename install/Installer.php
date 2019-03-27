@@ -39,7 +39,7 @@ class Installer implements PluginInterface, EventSubscriberInterface
             throw new \Exception("<error>NPM not installed</error>");
         }
 
-        $output->write("<info>Installing Wappalyser</info>");
+        $output->write("<info>Installing Wappalyzer</info>");
         exec("cd {$wappalyzerWrapperDirectory} && npm install", $stdOut, $exitCode);
 
         if ($exitCode !== 0) {

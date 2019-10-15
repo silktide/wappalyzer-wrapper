@@ -15,12 +15,12 @@ class TechnologyResult
     protected $confidence;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $version;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $website;
 
@@ -83,9 +83,9 @@ class TechnologyResult
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getWebsite(): string
+    public function getWebsite(): ?string
     {
         return $this->website;
     }

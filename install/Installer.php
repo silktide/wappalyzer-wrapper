@@ -36,7 +36,7 @@ class Installer implements PluginInterface, EventSubscriberInterface
         $lockHashFile = $installDir .  "/npm-install.hash";
 
         if (file_exists($installDir . "/node_modules") && is_dir($installDir . "/node_modules")) {
-            $output->write('Wappalyser: Node modules already installed - checking installation');
+            $output->write('Wappalyzer: Node modules already installed - checking installation');
         } else {
             if (file_exists($lockHashFile)) {
                 unlink($lockHashFile);
@@ -53,7 +53,7 @@ class Installer implements PluginInterface, EventSubscriberInterface
                 throw new \Exception("<error>NPM not installed</error>");
             }
 
-            $output->write("<info>Installing Wappalyser</info>");
+            $output->write("<info>Installing Wappalyzer</info>");
             exec("cd {$wappalyzerWrapperDirectory} && npm install", $stdOut, $exitCode);
 
             if ($exitCode !== 0) {

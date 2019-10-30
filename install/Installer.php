@@ -32,18 +32,37 @@ class Installer implements PluginInterface, EventSubscriberInterface
             $composer->getRepositoryManager()->findPackage("silktide/wappalyzer-wrapper", "*")
         );
 
-        exec('npm -v', $npmVersion, $exitCode);
-        $output->write("<info>npm version: {$npmVersion[0]}</info>");
+        $installDir = dirname(__DIR__, 1);
+        $lockHashFile = $installDir .  "/npm-install.hash";
 
-        if ($exitCode !== 0) {
-            throw new \Exception("<error>NPM not installed</error>");
+        if (file_exists($installDir . "/node_modules") && is_dir($installDir . "/node_modules")) {
+            $output->write('Wappalyser: Node modules already installed - checking installation');
+        } else {
+            if (file_exists($lockHashFile)) {
+                unlink($lockHashFile);
+            }
         }
 
-        $output->write("<info>Installing Wappalyser</info>");
-        exec("cd {$wappalyzerWrapperDirectory} && npm install", $stdOut, $exitCode);
+        $lockHash = hash_file('md5', $installDir . "/package-lock.json");
 
-        if ($exitCode !== 0) {
-            throw new \Exception("<error>NPM install failed</error>");
+        if (!file_exists($lockHashFile) || file_get_contents($lockHashFile) !== $lockHash) {
+            exec('npm -v', $npmVersion, $exitCode);
+            $output->write("<info>npm version: {$npmVersion[0]}</info>");
+
+            if ($exitCode !== 0) {
+                throw new \Exception("<error>NPM not installed</error>");
+            }
+
+            $output->write("<info>Installing Wappalyser</info>");
+            exec("cd {$wappalyzerWrapperDirectory} && npm install", $stdOut, $exitCode);
+
+            if ($exitCode !== 0) {
+                throw new \Exception("<error>NPM install failed</error>");
+            }
+
+            file_put_contents($lockHashFile, $lockHash);
+        } else {
+            $output->write("Lockfile hash was correct, skipping npm install");
         }
 
         $packageJsonFilename = $wappalyzerWrapperDirectory . "/node_modules/wappalyzer/package.json";

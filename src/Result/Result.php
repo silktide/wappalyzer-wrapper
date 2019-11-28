@@ -11,11 +11,25 @@ class Result
     protected $technologyResults = [];
 
     /**
-     * @return TechnologyResult[]
+     * @param int $acceptableConfidenceLevel
+     * @return array
      */
-    public function getTechnologyResults(): array
+    public function getTechnologyResults($acceptableConfidenceLevel = 1): array
     {
-        return $this->technologyResults;
+        $filteredResults = [];
+
+        foreach ($this->technologyResults as $technologyResult) {
+
+            $confidence = $technologyResult->getConfidence() ?? 0;
+
+            if ($confidence < $acceptableConfidenceLevel) {
+                continue;
+            }
+
+            $filteredResults[] = $technologyResult;
+        }
+
+        return $filteredResults;
     }
 
     /**

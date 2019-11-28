@@ -51,11 +51,11 @@ class TechnologyResult
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getConfidence(): string
+    public function getConfidence(): int
     {
-        return $this->confidence;
+        return isset($this->confidence) && is_numeric($this->confidence) ? $this->confidence : 100;
     }
 
     /**

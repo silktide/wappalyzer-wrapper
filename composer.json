@@ -3,7 +3,7 @@
     "description": "Wrapper for wappalyzer technology detection.",
     "type": "composer-plugin",
     "require": {
-        "php": "^7",
+        "php": "^7.1",
         "mikehaertl/php-shellcommand": "^1.2",
         "composer-plugin-api": "^1.0"
     },

@@ -20,9 +20,9 @@ class Result
 
         foreach ($this->technologyResults as $technologyResult) {
 
-            $confidence = $technologyResult->getConfidence() ?? 0;
+            $confidence = $technologyResult->getConfidence();
 
-            if ($confidence < $acceptableConfidenceLevel) {
+            if (is_numeric($confidence) && $confidence < $acceptableConfidenceLevel) {
                 continue;
             }
 

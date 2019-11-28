@@ -22,7 +22,7 @@ class Result
 
             $confidence = $technologyResult->getConfidence();
 
-            if (is_numeric($confidence) && $confidence < $minimumConfidenceLevel) {
+            if ($confidence < $minimumConfidenceLevel) {
                 continue;
             }
 

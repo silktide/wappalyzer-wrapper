@@ -14,7 +14,7 @@ class Result
      * @param int $minimumConfidenceLevel
      * @return array
      */
-    public function getTechnologyResults($minimumConfidenceLevel = 1): array
+    public function getTechnologyResults(int $minimumConfidenceLevel = 1): array
     {
         $filteredResults = [];
 

@@ -55,7 +55,7 @@ class TechnologyResult
      */
     public function getConfidence(): int
     {
-        return isset($this->confidence) && is_numeric($this->confidence) ? intval($this->confidence) : 100;
+        return isset($this->confidence) && is_numeric($this->confidence) ? $this->confidence : 100;
     }
 
     /**

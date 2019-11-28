@@ -11,10 +11,10 @@ class Result
     protected $technologyResults = [];
 
     /**
-     * @param int $acceptableConfidenceLevel
+     * @param int $minimumConfidenceLevel
      * @return array
      */
-    public function getTechnologyResults($acceptableConfidenceLevel = 1): array
+    public function getTechnologyResults($minimumConfidenceLevel = 1): array
     {
         $filteredResults = [];
 
@@ -22,7 +22,7 @@ class Result
 
             $confidence = $technologyResult->getConfidence();
 
-            if (is_numeric($confidence) && $confidence < $acceptableConfidenceLevel) {
+            if (is_numeric($confidence) && $confidence < $minimumConfidenceLevel) {
                 continue;
             }
 

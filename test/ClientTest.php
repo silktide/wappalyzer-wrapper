@@ -25,7 +25,7 @@ class ClientTest extends TestCase
         $mockJsonFileWriter = $this->getMockBuilder(JsonFileWriter::class)->getMock();
 
         // Should use path relative to this test
-        $path = realpath(__DIR__.'/../node_modules/wappalyzer/index.js');
+        $path = realpath(__DIR__.'/../node_modules/wappalyzer/cli.js');
 
         $mockCommandFactory = $this->getMockBuilder(CommandFactory::class)->getMock();
         $mockCommandFactory->expects($this->atLeastOnce())->method('create')->with('nodejs '.$path.' '.$url)->will($this->returnValue($mockCommand));

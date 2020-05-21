@@ -133,6 +133,11 @@ class ExistingPageDataRequest
      */
     public function addWindowObjectKey(string $windowObjectKey)
     {
+        // A key of just "window" seems to break some detections - ignore it
+        if ($windowObjectKey === "window") {
+            return;
+        }
+
         $this->windowObjectKeys[] = $windowObjectKey;
     }
 

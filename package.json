@@ -11,7 +11,7 @@
     "test": "test"
   },
   "dependencies": {
-    "wappalyzer": "5.9.34"
+    "wappalyzer": "^6.0.12"
   },
   "devDependencies": {},
   "scripts": {

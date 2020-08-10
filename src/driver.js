@@ -81,34 +81,38 @@ for (let headerName in document.headers) {
  * @param env
  * @returns {{}}
  */
-let getJs = function(env) {
-    const patterns = wappalyzer.jsPatterns;
+function processJs(window, patterns) {
     const js = {};
 
-    Object.keys(patterns).forEach(appName => {
+    // For each app
+    Object.keys(patterns).forEach((appName) => {
         js[appName] = {};
 
-        Object.keys(patterns[appName]).forEach(chain => {
+        // For each pattern
+        Object.keys(patterns[appName]).forEach((chain) => {
             js[appName][chain] = {};
-
             patterns[appName][chain].forEach((pattern, index) => {
                 const properties = chain.split('.');
 
-                let value = false;
-                properties.forEach((property) => {
-                    if (env && env.includes(property)) {
-                        value = true;
-                        return;
-                    }
-                });
+                // Look for complete chain
+                let lookFor = chain;
 
-                if ( value ) {
+                // If in 2 parts, and part 1 is window, use 2nd part only
+                if (properties.length === 2 && properties[0] === 'window') {
+                    lookFor = properties[1];
+                } else if (properties.length > 1) {
+                    return;
+                }
+
+                let value = window.indexOf(lookFor) > 0;
+
+                if (value) {
                     js[appName][chain][index] = value;
                 }
             });
+
         });
     });
-
     return js;
 };
 
@@ -117,7 +121,7 @@ wappalyzer.analyze(
     {
         headers,
         html: document.html,
-        js: getJs(document.env),
+        js: processJs(document.env, wappalyzer.jsPatterns),
         scripts: document.scripts,
         cookies: document.cookies
     }

@@ -43,7 +43,14 @@ class Installer implements PluginInterface, EventSubscriberInterface
             }
         }
 
-        $lockHash = hash_file('md5', $installDir . "/package-lock.json");
+        $packageLockFile = $installDir . "/package-lock.json";
+
+        if (!file_exists($packageLockFile)) {
+            $output->write("No package-lock.json. Assuming we're uninstalling");
+            return;
+        }
+
+        $lockHash = hash_file('md5', $packageLockFile);
 
         if (!file_exists($lockHashFile) || file_get_contents($lockHashFile) !== $lockHash) {
             exec('npm -v', $npmVersion, $exitCode);

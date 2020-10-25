@@ -19,6 +19,16 @@ class Installer implements PluginInterface, EventSubscriberInterface
         ];
     }
 
+    public function deactivate(Composer $composer, IOInterface $io)
+    {
+        // Move along, nothing to see here
+    }
+
+    public function uninstall(Composer $composer, IOInterface $io)
+    {
+        // Move along, nothing to see here
+    }
+
     public function activate(Composer $composer, IOInterface $io)
     {
         // Move along, nothing to see here

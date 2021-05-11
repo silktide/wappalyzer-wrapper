@@ -1,7 +1,11 @@
+# Deprecated
+Due to this making calls to the internal (very unstable) API of Wappalyzer this is deprecated
+
 # wappalyzer-wrapper
 A simple PHP wrapper for Wappalyzer technology detection that wraps up wappalyzer-cli command line client for use as an easily installed composer dependency.
  
 This library now also allows you to optionally bypass Wappalyzer's use of zombie to download the page, and instead you can pass in your own HTML, headers etc.
+
 
 ## Simple usage
 
